@@ -1,0 +1,116 @@
+<!-- 
+ToDo: 
+- Content auslagern in separate Datei?
+  Kann man machen mit jQuery .load
+- JavaScript auslagern in separater Datei?
+  Kann man machen mit <script language="JavaScript" src="blablabla.js">
+- BG Images splitten - 1.Teil (non repeate) + 2. Teil (repeate)
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="de">
+    <head>
+        <title>Planet Diver</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <script type="text/javascript" src="jquery/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="jquery/jquery-ui-1.8.24.custom.min.js"></script>
+        <meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
+        
+        <script language="JavaScript">
+            $(document).ready(function() {
+                var links, active, content;
+                //function: set first link active an show content
+                $('ul.tabs').each(function(){
+                    //get all links of the ul.tabs
+                    links = $(this).find('a');
+                    console.log("Anchors found: " , links);
+                    //hide all links - except the active one
+                    links.not(':first').each(function () {
+                        $($(this).attr('href')).hide();
+                    });
+                        
+                    //first link is active
+                    active = links.first().addClass('active');
+                    //get content of active link
+                    content = $(active.attr('href'));
+                    console.info(content);
+
+                    //function: bind click event
+                    $(this).on('click', 'a', function(e){
+                        //execute if link isn't active - if link is already active, forget it.
+                        if( !$(this).hasClass("active")){
+                            console.info( $(this));
+                            //set current tab inactive  hide content
+                            active.removeClass('active');
+                            content.hide();
+
+                            //set new tab active and show content
+                            active = $(this);
+                            active.addClass('active');
+                            //show content
+                            content = $($(this).attr('href'));
+                            content.fadeIn('slow');
+                        }
+
+                        //prevent default click action
+                        e.preventDefault();
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="main">
+            <div id="header">
+                <h1 id="title">Die Welt des Tauchens</h1>
+                <h3 id="subtitle">Der Kosmos des kleinen Mannes</p>
+            </div>            
+            <div id=navi>
+                <ul class="tabs">
+                    <li><a href="#tab-content-1">Startseite</a></li>
+                    <li><a href="#tab-content-2">&Uuml;ber uns</a></li>
+                    <li><a href="#tab-content-3">Referenz</a></li>
+                    <li><a href="#tab-content-4">Kontakt</a></li>
+                </ul>
+                <div id="tab-content-1" class="content">
+                    <h1>Content #1</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                    </p>
+                </div>
+                <div id="tab-content-2" class="content">
+                    <h1>Content #2</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                    </p>
+                </div>
+                <div id="tab-content-3" class="content">
+                    <h1>Content #3</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                    </p>
+                </div>
+                <div id="tab-content-4" class="content">
+                    <h1>Content #4</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                       Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vel illumuMilla Wasserf&auml;lle Brisbaneulputate velit esse molestie. <br>
+                    </p>
+                </div>
+            </div>
+            <div id="footer">
+                <p>Blablabla Copyright Datum</p>
+            </div>
+        </div>
+    </body>
+</html>
